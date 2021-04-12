@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">NotifcationApp</string>
+    <string name="active_notification_text">ACTIVE</string>
+    <string name="inactive_notification_text">INACTIVE</string>
+    <string name="notification_btn_text">Tap For Notification</string>
+    <string name="channel_name">notificationChannel</string>
+    <string name="channel_description">matter of urgency</string>
+</resources>
