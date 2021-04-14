@@ -17,8 +17,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var TapToOpenNotificationBtn: Button = findViewById(R.id.NotificationButton)
-        TapToOpenNotificationBtn.setOnClickListener {
+        var tapToOpenNotificationBtn: Button = findViewById(R.id.NotificationButton)
+        tapToOpenNotificationBtn.setOnClickListener { //sets OnclickListener on the tapToOpenNotification Button
             createNotificationChannel()
         }
     }
@@ -28,8 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun createNotificationChannel() {
 
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
+        // This creates the notification channel
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = getString(R.string.channel_name)
             val descriptionText = getString(R.string.channel_description)
@@ -37,7 +36,7 @@ class MainActivity : AppCompatActivity() {
             val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
                 description = descriptionText
             }
-            // Register the channel with the system
+            // This registers the created channel with the system
             val notificationManager: NotificationManager =
                     getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
@@ -51,13 +50,13 @@ class MainActivity : AppCompatActivity() {
                     .setContentTitle("New Notification")
                     .setContentText("Tap to activate!")
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                    // Set the intent that will fire when the user taps the notification
+
+                    // This sets the intent that will run when the user opens the notification
                     .setContentIntent(pendingIntent)
                     .setAutoCancel(true)
 
             with(NotificationManagerCompat.from(this)) {
-                // notificationId is a unique int for each notification that you must define
-                val notificationId = 0
+                val notificationId = 0 //unique notification id
                 notify(notificationId, builder.build())
             }
         }
